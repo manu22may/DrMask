@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    android:background="@drawable/dr_mask_bg"
+    android:backgroundTint="#80000000"
+    android:backgroundTintMode="src_atop"
     tools:context=".ActivityContact">
 
     <TextView
@@ -24,81 +26,98 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/smsB"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="#7B1FA2"
-        android:onClick="onButtonClicked"
-        android:text="SMS"
-        app:icon="?attr/actionModePasteDrawable"
-        app:iconPadding="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
 
-    <Button
-        android:id="@+id/callB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#512DA8"
-        android:onClick="onButtonClicked"
-        android:text="Call"
-        app:icon="@android:drawable/sym_call_outgoing"
-        app:iconPadding="10dp"
-        app:iconSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/smsB" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/emailB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#303F9F"
-        android:onClick="onButtonClicked"
-        android:text="Email"
-        app:icon="@android:drawable/ic_dialog_email"
-        app:iconPadding="10dp"
-        app:iconSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/callB" />
+            <Button
+                android:id="@+id/callB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#512DA8"
+                android:onClick="onButtonClicked"
+                android:text="Call"
+                app:icon="@android:drawable/sym_call_outgoing"
+                app:iconPadding="10dp"
+                app:iconSize="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/smsB" />
 
-    <Button
-        android:id="@+id/visitB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#1976D2"
-        android:onClick="onButtonClicked"
-        android:text="Visit Us"
-        app:icon="?android:attr/actionModeWebSearchDrawable"
-        app:iconPadding="10dp"
-        app:iconSize="29dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailB" />
+            <Button
+                android:id="@+id/visitB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#1976D2"
+                android:onClick="onButtonClicked"
+                android:text="Visit Us"
+                app:icon="?android:attr/actionModeWebSearchDrawable"
+                app:iconPadding="10dp"
+                app:iconSize="29dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailB" />
 
-    <Button
-        android:id="@+id/locateB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#0288D1"
-        android:onClick="onButtonClicked"
-        android:text="Locate Us"
-        app:icon="@android:drawable/ic_dialog_map"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/visitB" />
+            <Button
+                android:id="@+id/smsB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#7B1FA2"
+                android:onClick="onButtonClicked"
+                android:text="SMS"
+                app:icon="?attr/actionModePasteDrawable"
+                app:iconPadding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/emailB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#303F9F"
+                android:onClick="onButtonClicked"
+                android:text="Email"
+                app:icon="@android:drawable/ic_dialog_email"
+                app:iconPadding="10dp"
+                app:iconSize="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/callB" />
+
+            <Button
+                android:id="@+id/locateB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#0288D1"
+                android:onClick="onButtonClicked"
+                android:text="Locate Us"
+                app:icon="@android:drawable/ic_dialog_map"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/visitB" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

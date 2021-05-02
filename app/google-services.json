@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "705831588980",
+    "firebase_url": "https://fyp2021-2c051-default-rtdb.firebaseio.com",
+    "project_id": "fyp2021-2c051",
+    "storage_bucket": "fyp2021-2c051.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:705831588980:android:c29dd6cf29c30e44a0ed21",
+        "android_client_info": {
+          "package_name": "com.capgemini.drmask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "705831588980-058ftn13erd80mqvbn5qnkeuls6q30ci.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4CAg7Igffrniii3rb1IhxAbbrLfVgdOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "705831588980-058ftn13erd80mqvbn5qnkeuls6q30ci.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
