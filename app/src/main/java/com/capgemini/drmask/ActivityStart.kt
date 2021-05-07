@@ -31,12 +31,20 @@ class ActivityStart : AppCompatActivity() {
                         true
                     }
                     "Data"->{
+                        doCovid()
                         true
                     }
                     else->{false}
                 }
             }
         }
+    }
+
+    private fun doCovid() {
+        val frag = CovidFragment()
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.startParentL,frag)
+                .commit()
     }
 
     private fun doBMI() {
