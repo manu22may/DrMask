@@ -18,7 +18,7 @@ class ActivityStart : AppCompatActivity() {
             val menu = pMenu.menu
             menu.add("BMI")
             menu.add("News")
-            menu.add("Data")
+            menu.add("Covid Stats")
             pMenu.show()
             pMenu.setOnMenuItemClickListener {
                 when(it.title){
@@ -30,7 +30,7 @@ class ActivityStart : AppCompatActivity() {
                         doNews()
                         true
                     }
-                    "Data"->{
+                    "Covid Stats"->{
                         doCovid()
                         true
                     }

@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_bmi.*
 import kotlin.math.round
 
@@ -18,8 +21,30 @@ class BmiFragment : Fragment() {
     private var param2: String? = null
 
 
+    private lateinit var auth: FirebaseAuth
+    lateinit var ref: DatabaseReference
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        auth = FirebaseAuth.getInstance()
+        ref = FirebaseDatabase.getInstance().getReference("users").child(auth.currentUser.uid)
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists())
+                {
+                    val weight = snapshot.child("weight").value
+                    val height = snapshot.child("height").value
+                    bmiHeightE.setText("$height")
+                    bmiWeightE.setText("$weight")
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+        })
 
         bmiGoB.setOnClickListener {
             if(bmiHeightE.text==null ||bmiWeightE.text==null)
