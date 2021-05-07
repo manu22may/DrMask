@@ -1,6 +1,5 @@
 package com.capgemini.drmask
 
-import android.content.Intent
 import android.net.Uri
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -9,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.capgemini.drmask.retrofitdatabase.ArticlesDetails
 
 
 /**
@@ -16,8 +16,8 @@ import com.bumptech.glide.Glide
  * TODO: Replace the implementation with code for your data type.
  */
 class NewsRecyclerViewAdapter(
-        private val values: List<ArticlesDetails>,
-        val listener:(ArticlesDetails)->Unit
+    private val values: List<ArticlesDetails>,
+    val listener:(ArticlesDetails)->Unit
 )
     : RecyclerView.Adapter<NewsRecyclerViewAdapter.ViewHolder>() {
 

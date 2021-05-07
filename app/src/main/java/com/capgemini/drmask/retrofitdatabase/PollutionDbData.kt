@@ -1,4 +1,4 @@
-package com.capgemini.drmask
+package com.capgemini.drmask.retrofitdatabase
 
 data class PollutionDetails(
     val list: List<PollutionList>
@@ -6,7 +6,7 @@ data class PollutionDetails(
 
 
 data class PollutionList (
-    val main:AirQualityIndex,
+    val main: AirQualityIndex,
     val components : PollutionComponents
 )
 

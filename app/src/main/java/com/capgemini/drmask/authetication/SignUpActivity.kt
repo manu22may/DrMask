@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.capgemini.drmask.AccountActivity
 import com.capgemini.drmask.MainActivity
 import com.capgemini.drmask.R
 import com.capgemini.drmask.model.User
@@ -57,22 +58,20 @@ class SignUpActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(signupEmailE.text.toString(), signupPasswordE.text.toString())
             .addOnCompleteListener{ task ->
                 if (task.isSuccessful) {
-
                     val user = auth.currentUser
                     saveUser()
                     updateUI(user)
                 } else {
-                    Toast.makeText(this, "Authentication failed. Try Again After some time",
+                    Toast.makeText(this, "${task.exception?.message}",
                         Toast.LENGTH_SHORT).show()
-                    updateUI(null)
                 }
             }
     }
 
 
     private fun saveUser() {
-        val userid =ref.push().key!! //generate new key(primary)
-        val user = User(userid,nameE.text.toString(),null,null)
+        val userid = auth.currentUser.uid
+        val user = User(id = userid,name = nameE.text.toString())
         ref.child(userid).setValue(user).addOnCompleteListener {
            Log.d("SignUp","UserAdded")
         }
@@ -81,7 +80,9 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?) {
         Toast.makeText(this, "Added", Toast.LENGTH_SHORT).show()
-        startActivity(Intent(this, LoginActivity::class.java))
+        val intent = Intent(this, AccountActivity::class.java)
+        intent.putExtra("new",true)
+        startActivity(intent)
         finish()
     }
 }

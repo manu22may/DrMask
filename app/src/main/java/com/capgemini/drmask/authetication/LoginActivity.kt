@@ -50,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, "Authentication Successful", Toast.LENGTH_SHORT).show()
                         updateUI(user)
                     } else { //wrong details
-                        Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "${task.exception?.message}", Toast.LENGTH_SHORT).show()
                     }
                 }
     }

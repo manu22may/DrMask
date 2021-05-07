@@ -1,4 +1,4 @@
-package com.capgemini.drmask
+package com.capgemini.drmask.retrofitdatabase
 
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -14,7 +14,7 @@ interface PollutionDbInterface {
 
         val BASE_URL="https://api.openweathermap.org/data/2.5/"
 
-        fun getInstance():PollutionDbInterface{
+        fun getInstance(): PollutionDbInterface {
             val builder = Retrofit.Builder()
             builder.addConverterFactory(GsonConverterFactory.create())
             builder.baseUrl(BASE_URL)

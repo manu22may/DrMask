@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.capgemini.drmask.retrofitdatabase.ArticlesList
+import com.capgemini.drmask.retrofitdatabase.NewsDbInterface
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

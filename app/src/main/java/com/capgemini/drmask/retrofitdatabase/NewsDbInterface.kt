@@ -1,4 +1,4 @@
-package com.capgemini.drmask
+package com.capgemini.drmask.retrofitdatabase
 
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -14,7 +14,7 @@ interface NewsDbInterface {
 
         val BASE_URL="https://newsapi.org/"
 
-        fun getInstance():NewsDbInterface{
+        fun getInstance(): NewsDbInterface {
             val builder = Retrofit.Builder()
             builder.addConverterFactory(GsonConverterFactory.create())
             builder.baseUrl(BASE_URL)

@@ -7,16 +7,13 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.capgemini.drmask.authetication.LoginActivity
+import com.capgemini.drmask.retrofitdatabase.PollutionDbInterface
+import com.capgemini.drmask.retrofitdatabase.PollutionDetails
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -138,6 +135,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 startActivity(Intent(this,LoginActivity::class.java))
                 finish()
+            }
+            R.id.mainAccountB->{
+                startActivity(Intent(this,AccountActivity::class.java))
             }
         }
     }

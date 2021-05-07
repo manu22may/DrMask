@@ -1,4 +1,4 @@
-package com.capgemini.drmask
+package com.capgemini.drmask.retrofitdatabase
 
 data class ArticlesDetails(
     val title:String,
