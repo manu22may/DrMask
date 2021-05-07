@@ -10,6 +10,7 @@ import com.capgemini.drmask.authetication.LoginActivity
 import com.capgemini.drmask.retrofitdatabase.PollutionDbInterface
 import com.capgemini.drmask.retrofitdatabase.PollutionDetails
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,30 +18,22 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
+    /*lateinit var humidityDataValues : MutableList<String>
+  lateinit var humidityTimeStamp : MutableList<Long>
+
+  val SAMPLE_SIZE =50
+  var latt="13.0827"
+  var longi="80.2707"*/
+
     private lateinit var auth: FirebaseAuth
-
-
-    /*val ref = FirebaseDatabase.getInstance().getReference("Humidity").child("Value")
-    lateinit var humidityDataValues : MutableList<String>
-    lateinit var humidityTimeStamp : MutableList<Long>
-
-    val SAMPLE_SIZE =50
-    var latt="13.0827"
-    var longi="80.2707"*/
+    lateinit var ref:DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         auth = FirebaseAuth.getInstance()
-
-        val name = auth.currentUser.displayName
-        mainNameT.text = "Welcome $name"
-       /* humidityDataValues = mutableListOf()
-        humidityTimeStamp = mutableListOf()
-
-        humidityDataValues.clear()
-        humidityTimeStamp.clear()*/
+        ref = FirebaseDatabase.getInstance().getReference("users").child(auth.currentUser.uid)
 
 
         //POLLUTION INDEX RETROFIT
@@ -75,9 +68,9 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                     mainAqiT.text = msg
-                    mainCoT.text = "$co μg/m3\n\nCO"
-                    mainNoT.text = "$no μg/m3\n\nNO"
-                    mainPmT.text = "$pm μg/m3\n\nPM2.5"
+                    "$co μg/m3\n\nCO".also { mainCoT.text = it }
+                    "$no μg/m3\n\nNO".also { mainNoT.text = it }
+                    "$pm μg/m3\n\nPM2.5".also { mainPmT.text = it }
                 }
             }
 
@@ -88,29 +81,19 @@ class MainActivity : AppCompatActivity() {
         })
 
 
-/*        //FIREBASE
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists())
                 {
-                    val data = snapshot.value.toString()
-                    val time = Calendar.getInstance().timeInMillis
-                    if(humidityDataValues.size>=SAMPLE_SIZE)
-                    {
-                        humidityDataValues.removeFirst()
-                        humidityTimeStamp.removeFirst()
-                    }
-                    humidityDataValues.add(data)
-                    humidityTimeStamp.add(time)
-                    checkingFirebaseT.text = humidityDataValues.toString()
-                    checkingFirebaseT2.text = humidityTimeStamp.toString()
+                    val name = snapshot.child("name").value
+                    "Welcome $name".also { mainNameT.text = it }
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
             }
 
-        })*/
+        })
 
     }
 
