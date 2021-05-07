@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.capgemini.drmask.authetication.LoginActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -18,22 +20,30 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    val ref = FirebaseDatabase.getInstance().getReference("Humidity").child("Value")
+    private lateinit var auth: FirebaseAuth
+
+
+    /*val ref = FirebaseDatabase.getInstance().getReference("Humidity").child("Value")
     lateinit var humidityDataValues : MutableList<String>
     lateinit var humidityTimeStamp : MutableList<Long>
 
     val SAMPLE_SIZE =50
     var latt="13.0827"
-    var longi="80.2707"
+    var longi="80.2707"*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        humidityDataValues = mutableListOf()
+
+        auth = FirebaseAuth.getInstance()
+
+        val name = auth.currentUser.displayName
+        mainNameT.text = "Welcome $name"
+       /* humidityDataValues = mutableListOf()
         humidityTimeStamp = mutableListOf()
 
         humidityDataValues.clear()
-        humidityTimeStamp.clear()
+        humidityTimeStamp.clear()*/
 
 
         //POLLUTION INDEX RETROFIT
@@ -81,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         })
 
 
-        //FIREBASE
+/*        //FIREBASE
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists())
@@ -103,7 +113,7 @@ class MainActivity : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {
             }
 
-        })
+        })*/
 
     }
 
@@ -118,6 +128,16 @@ class MainActivity : AppCompatActivity() {
             R.id.contactB->{
                 Toast.makeText(this,"Contact us",Toast.LENGTH_LONG).show()
                 startActivity(Intent(this,ActivityContact::class.java))
+            }
+            R.id.mainLogoutB->{
+                val currentUser = auth.currentUser
+                if(currentUser!=null)
+                {
+                    Toast.makeText(this, "Logging Out", Toast.LENGTH_SHORT).show()
+                    auth.signOut()
+                }
+                startActivity(Intent(this,LoginActivity::class.java))
+                finish()
             }
         }
     }
