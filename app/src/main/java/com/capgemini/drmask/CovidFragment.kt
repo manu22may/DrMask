@@ -31,7 +31,7 @@ class CovidFragment : Fragment() {
                     Log.d("Covid", "Covid :${cases.toString()}")
 
                     val indiaCases = cases.summary
-                    covidSummaryT.text ="INDIA:\nConfirmed : ${indiaCases.total}\nDeaths : ${indiaCases.deaths}\tDischarged : ${indiaCases.discharged}"
+                    covidSummaryT.text ="INDIA:\nConfirmed : ${indiaCases.total}\nDeaths : ${indiaCases.deaths}\nDischarged : ${indiaCases.discharged}"
 
                     val stateCases = cases.regional.filter {
                         it.loc == "Tamil Nadu"
