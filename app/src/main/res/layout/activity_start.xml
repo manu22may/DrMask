@@ -15,7 +15,7 @@
         android:layout_height="40dp"
         android:background="@drawable/gradient_background_blue"
         android:fontFamily="sans-serif-condensed-medium"
-        android:text="IBM Watson"
+        android:text="Dr. Mask"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="@color/white"
