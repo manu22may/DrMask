@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         app:cardBackgroundColor="#303F9F"
         app:cardCornerRadius="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/covidBedB"
         app:layout_constraintEnd_toStartOf="@+id/cardView5"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -140,11 +140,28 @@
         android:id="@+id/covidBedB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="Show Beds Availability"
+        android:text="Show Beds Availability source 1"
+        app:layout_constraintBottom_toTopOf="@+id/covidBedB2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/covidBedB2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Beds Availability Source 2"
+        app:layout_constraintBottom_toTopOf="@+id/covidBedB3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/covidBedB3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Show Beds Availability Source 3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
 

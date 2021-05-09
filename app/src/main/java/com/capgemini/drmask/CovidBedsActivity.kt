@@ -14,8 +14,9 @@ class CovidBedsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_covid_beds)
 
+        val url = intent.getStringExtra("url")?:"https://tncovidbeds.tnega.org/"
         webview.webViewClient = MyWebClient()
-        webview.loadUrl("https://tncovidbeds.tnega.org/")
+        webview.loadUrl(url)
         webview.settings.javaScriptEnabled =true
     }
 

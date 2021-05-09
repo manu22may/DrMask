@@ -24,8 +24,20 @@ class CovidFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         covidBedB.setOnClickListener {
-            startActivity(Intent(activity,CovidBedsActivity::class.java))
+            val intent =Intent(activity,CovidBedsActivity::class.java)
+            intent.putExtra("url","https://external.sprinklr.com/insights/explorer/dashboard/601b9e214c7a6b689d76f493/tab/9?id=DASHBOARD_601b9e214c7a6b689d76f493&tabId=9%249_Hospital%20Beds")
+            startActivity(intent)
         }
+        covidBedB2.setOnClickListener {
+            val intent =Intent(activity,CovidBedsActivity::class.java)
+            intent.putExtra("url","https://covid.army/chennai/ventilator")
+            startActivity(intent)
+        }
+        covidBedB3.setOnClickListener {
+            val intent =Intent(activity,CovidBedsActivity::class.java)
+            startActivity(intent)
+        }
+
 
         val request = CovidDbInterface.getInstance().getCasesDetails("https://api.rootnet.in/covid19-in/stats/latest")
         request.enqueue(object : Callback<CovidDetails> {
