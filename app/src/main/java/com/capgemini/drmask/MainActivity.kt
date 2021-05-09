@@ -18,12 +18,6 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
-    /*lateinit var humidityDataValues : MutableList<String>
-  lateinit var humidityTimeStamp : MutableList<Long>
-
-  val SAMPLE_SIZE =50
-  var latt="13.0827"
-  var longi="80.2707"*/
 
     private lateinit var auth: FirebaseAuth
     lateinit var ref:DatabaseReference
@@ -121,6 +115,9 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.mainAccountB->{
                 startActivity(Intent(this,AccountActivity::class.java))
+            }
+            R.id.dataB->{
+                startActivity(Intent(this,FireBasePlotActivity::class.java))
             }
         }
     }

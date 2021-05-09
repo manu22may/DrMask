@@ -10,6 +10,21 @@
     android:onClick="onButtonClicked"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/dataB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#303F9F"
+        android:onClick="onButtonClicked"
+        android:text="Data"
+        android:textSize="18sp"
+        app:icon="?android:attr/listChoiceIndicatorSingle"
+        app:iconGravity="end"
+        app:layout_constraintBottom_toTopOf="@+id/startB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/mainNameT"
         android:layout_width="0dp"
