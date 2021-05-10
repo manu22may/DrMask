@@ -7,12 +7,18 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_fire_base_plot.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.collections.ArrayList
 
 class FireBasePlotActivity : AppCompatActivity() {
 
@@ -20,7 +26,9 @@ class FireBasePlotActivity : AppCompatActivity() {
     lateinit var bpmDataValues : MutableList<String>
     lateinit var spo2DataValues : MutableList<String>
     var SAMPLE_SIZE = 20
-
+    lateinit var bpmChart : LineChart
+    lateinit var spo2Chart : LineChart
+    lateinit var humChart : LineChart
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +40,50 @@ class FireBasePlotActivity : AppCompatActivity() {
         humidityDataValues = mutableListOf()
         bpmDataValues = mutableListOf()
         spo2DataValues = mutableListOf()
+
+        val bpmGraphValues = ArrayList<Entry>()
+        val spo2GraphValues = ArrayList<Entry>()
+        val humidityGraphValues = ArrayList<Entry>()
+
+
+        //GRAPHS
+        refreshB.setOnClickListener {
+            //bpm
+            bpmGraphValues.clear()
+            for(x in 1..bpmDataValues.size)
+                bpmGraphValues.add(Entry((x).toFloat(),(bpmDataValues[x-1]).toFloat()))
+            bpmChart = findViewById(R.id.bpmGraph)
+            val lineDataSetBpm = LineDataSet(bpmGraphValues,"BPM CHART")
+            val dataSetsBpm = ArrayList<ILineDataSet>()
+            dataSetsBpm.add(lineDataSetBpm)
+            val dataBpm = LineData(dataSetsBpm)
+            bpmChart.data=dataBpm
+            bpmChart.invalidate()
+
+            //spo2
+            spo2GraphValues.clear()
+            for(x in 1..spo2DataValues.size)
+                spo2GraphValues.add(Entry((x).toFloat(),(spo2DataValues[x-1]).toFloat()))
+            spo2Chart = findViewById(R.id.spo2Graph)
+            val lineDataSetSpo2 = LineDataSet(spo2GraphValues,"SPO2 CHART")
+            val dataSetsSpo2 = ArrayList<ILineDataSet>()
+            dataSetsSpo2.add(lineDataSetSpo2)
+            val dataSpo2 = LineData(dataSetsSpo2)
+            spo2Chart.data=dataSpo2
+            spo2Chart.invalidate()
+
+            //spo2
+            humidityGraphValues.clear()
+            for(x in 1..humidityDataValues.size)
+                humidityGraphValues.add(Entry((x).toFloat(),(humidityDataValues[x-1]).toFloat()))
+            humChart = findViewById(R.id.humidityGraph)
+            val lineDataSetHum = LineDataSet(humidityGraphValues,"HUMIDITY CHART")
+            val dataSetsHum = ArrayList<ILineDataSet>()
+            dataSetsHum.add(lineDataSetHum)
+            val dataHum = LineData(dataSetsHum)
+            humChart.data=dataHum
+            humChart.invalidate()
+        }
 
         ref1.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -48,7 +100,7 @@ class FireBasePlotActivity : AppCompatActivity() {
                         sendNotification("$data BPM Abnormality",1)
                     }
                     bpmDataValues.add(data)
-                    bpmT.text = bpmDataValues.toString()
+                    bpmT.text ="BPM : $data"
                     if(bpmDataValues.size>=SAMPLE_SIZE)
                         bpmDataValues.removeFirst()
                 }
@@ -64,7 +116,7 @@ class FireBasePlotActivity : AppCompatActivity() {
                 {
                     val data  = snapshot.value.toString()
                     humidityDataValues.add(data)
-                    humidityT.text =humidityDataValues.toString()
+                    humidityT.text ="HUMIDITY : $data"
                     if(humidityDataValues.size>=SAMPLE_SIZE)
                         humidityDataValues.removeFirst()
                 }
@@ -85,7 +137,7 @@ class FireBasePlotActivity : AppCompatActivity() {
                         sendNotification("$data SPO2 Abnormality",3)
                     }
                     spo2DataValues.add(data)
-                    spo2T.text=spo2DataValues.toString()
+                    spo2T.text ="SPO2 : $data"
                     if(spo2DataValues.size>=SAMPLE_SIZE)
                         spo2DataValues.removeFirst()
                 }
