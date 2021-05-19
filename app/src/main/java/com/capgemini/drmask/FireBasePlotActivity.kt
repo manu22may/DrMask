@@ -3,8 +3,11 @@ package com.capgemini.drmask
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.telephony.SmsManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.charts.LineChart
@@ -20,15 +23,19 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
+
 class FireBasePlotActivity : AppCompatActivity() {
 
     lateinit var humidityDataValues : MutableList<String>
     lateinit var bpmDataValues : MutableList<String>
     lateinit var spo2DataValues : MutableList<String>
-    var SAMPLE_SIZE = 20
+    var SAMPLE_SIZE = 50
     lateinit var bpmChart : LineChart
     lateinit var spo2Chart : LineChart
     lateinit var humChart : LineChart
+    var maxHum = 0.0
+    var minHum = 100.0
+    var normalHum =90.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,12 +98,7 @@ class FireBasePlotActivity : AppCompatActivity() {
                 {
                     val data  = snapshot.value.toString()
                     //CONSTRAINT
-                    if(data.toDouble()<40 ||data.toDouble()>200) {
-                        Toast.makeText(
-                            this@FireBasePlotActivity,
-                            "$data BPM Abnormality",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                    if(data.toDouble()<40 ||data.toDouble()>150) {
                         sendNotification("$data BPM Abnormality",1)
                     }
                     bpmDataValues.add(data)
@@ -117,8 +119,23 @@ class FireBasePlotActivity : AppCompatActivity() {
                     val data  = snapshot.value.toString()
                     humidityDataValues.add(data)
                     humidityT.text ="HUMIDITY : $data"
-                    if(humidityDataValues.size>=SAMPLE_SIZE)
+                    if(humidityDataValues.size>=SAMPLE_SIZE) {
                         humidityDataValues.removeFirst()
+                        var sumHum=0.0
+                        for (x in humidityDataValues)
+                            sumHum+=x.toDouble()
+                        sumHum/=SAMPLE_SIZE
+                        if(sumHum<normalHum){
+                            sendNotification("$sumHum Breathing Abnormality",2)
+                        }
+                    }
+                    if(humidityDataValues.size==10) {
+                        for (x in humidityDataValues) {
+                            if (x.toDouble() > maxHum) maxHum = x.toDouble()
+                            if (x.toDouble() < minHum) minHum = x.toDouble()
+                        }
+                        normalHum = minHum + (maxHum-minHum)/4
+                    }
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -132,8 +149,7 @@ class FireBasePlotActivity : AppCompatActivity() {
                 {
                     val data  = snapshot.value.toString()
                     //CONSTRAINT
-                    if(data.toDouble()<94){
-                        Toast.makeText(this@FireBasePlotActivity,"$data Spo2 Abnormality",Toast.LENGTH_SHORT).show()
+                    if(data.toDouble()<=92){
                         sendNotification("$data SPO2 Abnormality",3)
                     }
                     spo2DataValues.add(data)
@@ -148,6 +164,11 @@ class FireBasePlotActivity : AppCompatActivity() {
     }
 
     private fun sendNotification(msg: String, id: Int) {
+        //Getting intent and PendingIntent instance
+        //Getting intent and PendingIntent instance
+        val intent = Intent(applicationContext, MainActivity::class.java)
+        val pi = PendingIntent.getActivity(applicationContext, 0, intent, 0)
+
         var notifyMessage =msg
         val nManager =getSystemService(NOTIFICATION_SERVICE) as NotificationManager
                 val builder: Notification.Builder = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {//checks version
@@ -162,6 +183,11 @@ class FireBasePlotActivity : AppCompatActivity() {
                 }
                 else  Notification.Builder(this)
 
+
+        //Get the SmsManager instance and call the sendTextMessage method to send message
+        //Get the SmsManager instance and call the sendTextMessage method to send message
+
+
                 builder.setSmallIcon(R.drawable.ic_launcher_foreground)
                 builder.setContentTitle("EMERGENCY")
                 builder.setContentText(notifyMessage)
@@ -171,6 +197,10 @@ class FireBasePlotActivity : AppCompatActivity() {
                 val myNotify = builder.build()
 
                 nManager.notify(id, myNotify)
+
+        Toast.makeText(this@FireBasePlotActivity,"$notifyMessage is sent as sms",Toast.LENGTH_SHORT).show()
+        val sms: SmsManager = SmsManager.getDefault()
+        sms.sendTextMessage("7010153098", null, notifyMessage, pi, null)
     }
 
 }
