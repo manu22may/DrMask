@@ -172,7 +172,7 @@ class FireBasePlotActivity : AppCompatActivity() {
         var notifyMessage =msg
         val nManager =getSystemService(NOTIFICATION_SERVICE) as NotificationManager
                 val builder: Notification.Builder = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {//checks version
-                    val channel = NotificationChannel("test", "Reminder Done", NotificationManager.IMPORTANCE_DEFAULT)
+                    val channel = NotificationChannel("test", "Reminder Done", NotificationManager.IMPORTANCE_HIGH)
                     nManager.createNotificationChannel(channel)
 
                     val date = LocalDateTime.now()
