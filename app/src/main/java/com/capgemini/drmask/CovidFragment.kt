@@ -10,6 +10,10 @@ import android.view.ViewGroup
 import com.capgemini.drmask.retrofitdatabase.CovidDbInterface
 import com.capgemini.drmask.retrofitdatabase.CovidDetails
 import com.capgemini.drmask.retrofitdatabase.NewsDbInterface
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_covid.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,19 +22,39 @@ import retrofit2.Response
 
 
 class CovidFragment : Fragment() {
-
+    var links = mutableListOf<String>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //LINK RETREIVER
+        val ref = FirebaseDatabase.getInstance().getReference("links")
+        ref.addListenerForSingleValueEvent(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()) {
+                    for (child in snapshot.children)
+                        links.add(child.value.toString())
+                    Log.d("Links", links.toString())
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
+        covidVaccineB.setOnClickListener {
+            val intent =Intent(activity,CovidBedsActivity::class.java)
+            intent.putExtra("url", links[0])
+            startActivity(intent)
+        }
+
         covidBedB.setOnClickListener {
             val intent =Intent(activity,CovidBedsActivity::class.java)
-            intent.putExtra("url","https://external.sprinklr.com/insights/explorer/dashboard/601b9e214c7a6b689d76f493/tab/9?id=DASHBOARD_601b9e214c7a6b689d76f493&tabId=9%249_Hospital%20Beds")
+            intent.putExtra("url",links[1])
             startActivity(intent)
         }
         covidBedB2.setOnClickListener {
             val intent =Intent(activity,CovidBedsActivity::class.java)
-            intent.putExtra("url","https://covid.army/chennai/ventilator")
+            intent.putExtra("url",links[2])
             startActivity(intent)
         }
         covidBedB3.setOnClickListener {

@@ -4,26 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dr_mask_bg"
+    android:background="@drawable/login_bg"
     android:backgroundTint="#4D000000"
     android:backgroundTintMode="src_atop"
     android:onClick="onButtonClicked"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/dataB"
+    <ImageButton
+        android:id="@+id/mainAccountB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#303F9F"
+        android:backgroundTint="?android:attr/colorPressedHighlight"
         android:onClick="onButtonClicked"
-        android:text="Data"
-        android:textSize="18sp"
-        app:icon="?android:attr/listChoiceIndicatorSingle"
-        app:iconGravity="end"
-        app:layout_constraintBottom_toTopOf="@+id/startB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_account_circle_24" />
+
+    <Button
+        android:id="@+id/mainLogoutB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:onClick="onButtonClicked"
+        android:text="Logout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/contactB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="?android:attr/colorMultiSelectHighlight"
+        android:onClick="onButtonClicked"
+        android:shadowColor="#FFFFFF"
+        android:text="Help?"
+        android:textSize="18sp"
+        app:icon="@android:drawable/stat_sys_phone_call"
+        app:iconGravity="start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/mainNameT"
@@ -31,7 +52,8 @@
         android:layout_height="wrap_content"
         android:background="@color/black"
         android:fontFamily="sans-serif-light"
-        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:text="Welcome"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -40,80 +62,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/contactB" />
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:fontFamily="sans-serif-black"
-        android:text="Dr. Mask"
+        android:background="@android:color/holo_red_dark"
+        android:fontFamily="sans-serif-light"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:text="Air Quality"
         android:textAlignment="center"
-        android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/cardView8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:fontFamily="sans-serif-light"
-        android:paddingRight="20dp"
-        android:text="-Your Health is our PRIORITY"
-        android:textAlignment="viewEnd"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <Button
-        android:id="@+id/contactB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:backgroundTint="#1976D2"
-        android:onClick="onButtonClicked"
-        android:shadowColor="#FFFFFF"
-        android:text="Contact Us"
-        android:textSize="18sp"
-        app:icon="@android:drawable/stat_sys_phone_call"
-        app:iconGravity="end"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/startB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="#303F9F"
-        android:onClick="onButtonClicked"
-        android:text="Start"
-        android:textSize="18sp"
-        app:icon="?android:attr/listChoiceIndicatorSingle"
-        app:iconGravity="end"
-        app:layout_constraintBottom_toTopOf="@+id/contactB"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/material_on_primary_emphasis_high_type"
         app:cardCornerRadius="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/startB"
+        app:layout_constraintBottom_toTopOf="@+id/dataB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainNameT">
@@ -121,7 +95,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:id="@+id/mainAqiT"
@@ -211,26 +188,35 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/mainLogoutB"
+        android:id="@+id/startB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@android:color/holo_red_light"
         android:onClick="onButtonClicked"
-        android:text="Logout"
+        android:text="Health "
+        android:textSize="18sp"
+        app:icon="?android:attr/fingerprintAuthDrawable"
+        app:iconGravity="end"
+        app:layout_constraintBottom_toTopOf="@+id/dataB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/dataB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:onClick="onButtonClicked"
+        android:text="Data Monitoring"
+        android:textSize="18sp"
+        app:icon="@drawable/ic_baseline_timeline_24"
+        app:iconGravity="end"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainNameT" />
-
-    <ImageButton
-        android:id="@+id/mainAccountB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="2dp"
-        android:backgroundTint="@color/ic_launcher_background"
-        android:onClick="onButtonClicked"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_account_circle_24" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

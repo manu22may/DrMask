@@ -35,8 +35,8 @@ class AccountActivity : AppCompatActivity() {
                     val user = snapshot.getValue(User::class.java)!!
                     settingsNameT.setText(user.name.toString())
                     settingsAgeT.setText(user.age.toString())
-                    settingsHeightT.setText(if(user.height.toString()=="") "" else "${user.height.toString()} cm")
-                    settingsWeightT.setText(if(user.weight.toString()=="") "" else "${user.weight.toString()} KG")
+                    settingsHeightT.setText(if(user.height.toString()=="") "" else "${user.height.toString()}")
+                    settingsWeightT.setText(if(user.weight.toString()=="") "" else "${user.weight.toString()}")
                     settingsEmergencyPhoneT.setText(user.emergencyPhone.toString())
                 }
             }
@@ -47,7 +47,7 @@ class AccountActivity : AppCompatActivity() {
         })
 
         settingsConfirmB.setOnClickListener {
-            if(check(settingsNameT.text) || check(settingsAgeT.text) || check(settingsHeightT.text)|| check(settingsWeightT.text)|| check(settingsEmergencyPhoneT.text))
+            if(check(settingsNameT.text) || check(settingsAgeT.text) || check(settingsHeightT.text)|| check(settingsWeightT.text)|| settingsEmergencyPhoneT.text.toString().length<10)
                 Toast.makeText(this,"Fill all details",Toast.LENGTH_LONG).show()
             else{
                 ref.child("name").setValue(settingsNameT.text.toString())

@@ -41,6 +41,7 @@ class ActivityStart : AppCompatActivity() {
     }
 
     private fun doCovid() {
+        startHeadingT.text = "COVID LIVE STATS"
         val frag = CovidFragment()
         supportFragmentManager.beginTransaction()
                 .replace(R.id.startParentL,frag)
@@ -48,6 +49,7 @@ class ActivityStart : AppCompatActivity() {
     }
 
     private fun doBMI() {
+        startHeadingT.text = "BMI CALCULATION"
         val frag = BmiFragment.newInstance("","")
         supportFragmentManager.beginTransaction()
             .replace(R.id.startParentL,frag)
@@ -55,6 +57,7 @@ class ActivityStart : AppCompatActivity() {
     }
 
     private fun doNews() {
+        startHeadingT.text = "Top Health News"
         val frag = NewsFragment()
         supportFragmentManager.beginTransaction()
             .replace(R.id.startParentL,frag)

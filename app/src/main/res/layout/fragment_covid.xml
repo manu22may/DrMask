@@ -4,10 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:backgroundTint="@color/white"
     tools:context=".CovidFragment">
 
+
+    <Button
+        android:id="@+id/covidVaccineB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:text="Vacine Availability"
+        app:layout_constraintBottom_toTopOf="@+id/covidBedB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/covidSummaryT"
@@ -28,7 +36,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:background="#FF8A65"
+        android:background="@color/ic_launcher_background"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
@@ -44,7 +52,7 @@
         android:layout_height="wrap_content"
         app:cardBackgroundColor="#303F9F"
         app:cardCornerRadius="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/covidBedB"
+        app:layout_constraintBottom_toTopOf="@+id/covidVaccineB"
         app:layout_constraintEnd_toStartOf="@+id/cardView5"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +74,7 @@
         android:id="@+id/cardView5"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#388E3C"
+        app:cardBackgroundColor="#E64A19"
         app:cardCornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView6"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,7 +99,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        app:cardBackgroundColor="#E64A19"
+        app:cardBackgroundColor="#388E3C"
         app:cardCornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="@+id/cardView5"
         app:layout_constraintStart_toStartOf="@+id/cardView6"

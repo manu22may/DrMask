@@ -16,23 +16,23 @@ class ActivityContact : AppCompatActivity() {
     fun onButtonClicked(view: View) {
         when(view.id){
             R.id.smsB->{
-                val i = Intent(Intent.ACTION_SENDTO, Uri.parse("sms:9952928460"))
+                val i = Intent(Intent.ACTION_SENDTO, Uri.parse("sms:7708457853"))
                 Toast.makeText(this, "SMSing ....", Toast.LENGTH_LONG).show()
                 startActivity(i)
             }
             R.id.callB -> {
 //                val i =Intent(Intent.ACTION_CALL,Uri.parse("tel:12345678"))
-                val i = Intent(Intent.ACTION_DIAL, Uri.parse("tel:9952928460"))
+                val i = Intent(Intent.ACTION_DIAL, Uri.parse("tel:7708457853"))
                 Toast.makeText(this, "Calling ....", Toast.LENGTH_LONG).show()
                 startActivity(i)
             }
             R.id.emailB -> {
-                val send = Intent(Intent.ACTION_SENDTO,Uri.parse("mailto:swethaaravilla@gmail.com"))
+                val send = Intent(Intent.ACTION_SENDTO,Uri.parse("mailto:manu22may1999@gmail.com"))
                 Toast.makeText(this, "Emailing ....", Toast.LENGTH_LONG).show()
                 startActivity(Intent.createChooser(send, "Send mail..."))
             }
             R.id.visitB -> {
-                val i = Intent(Intent.ACTION_VIEW, Uri.parse("http://capgemini.com"))
+                val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://vit.ac.in/"))
                 Toast.makeText(this, "Visiting us ....", Toast.LENGTH_LONG).show()
                 startActivity(i)
             }

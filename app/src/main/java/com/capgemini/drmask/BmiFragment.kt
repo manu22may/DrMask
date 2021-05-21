@@ -56,11 +56,47 @@ class BmiFragment : Fragment() {
                 bmi=String.format("%.2f", bmi).toDouble()
                 bmiAnsT.text="BMI = $bmi"
                 when{
-                    bmi>35.0-> {bmiImage.setImageResource(R.drawable.extremely_obese)}
-                    bmi>30.0-> {bmiImage.setImageResource(R.drawable.obese)}
-                    bmi>25.0-> {bmiImage.setImageResource(R.drawable.overweight)}
-                    bmi>18.5-> {bmiImage.setImageResource(R.drawable.normal)}
-                    else-> {bmiImage.setImageResource(R.drawable.underweight)}
+                    bmi>35.0-> {
+                        bmiImage.setImageResource(R.drawable.extremely_obese)
+                        bmiInfoT.text ="You are Extremely Obese"+
+                                "\n" +
+                                "Obesity is considered the leading preventable disease worldwide. This can be achieved mainly by lifestyle modification that includes diet plans for weight loss and physical activity. Behavioral therapy, drug therapy, and surgery also aid in reducing the illness.\n" +
+                                "\n" +
+                                "The treatment can include\n" +
+                                "\n" +
+                                "1. Weight loss diet control and management\n" +
+                                "2. Behavioral therapy (through stress management, counseling people for psychological eating disorders, anti-depression therapies)\n" +
+                                "3. Drug management (consisting of medication for specific hormonal imbalances and other co-morbidities)\n" +
+                                "4. Surgery (Bariatric surgery and procedures like gastric sleeve and Roux--En-Y gastric bypass surgery)"
+                    }
+                    bmi>30.0-> {bmiImage.setImageResource(R.drawable.obese)
+                        bmiInfoT.text ="You are Obese"+
+                                "\n" +"Obesity is considered the leading preventable disease worldwide. This can be achieved mainly by lifestyle modification that includes diet plans for weight loss and physical activity. Behavioral therapy, drug therapy, and surgery also aid in reducing the illness.\n" +
+                                "\n" +
+                                "The treatment can include\n" +
+                                "\n" +
+                                "1. Weight loss diet control and management\n" +
+                                "2. Behavioral therapy (through stress management, counseling people for psychological eating disorders, anti-depression therapies)\n" +
+                                "3. Drug management (consisting of medication for specific hormonal imbalances and other co-morbidities)\n" +
+                                "4. Surgery (Bariatric surgery and procedures like gastric sleeve and Roux--En-Y gastric bypass surgery)"
+                    }
+                    bmi>25.0-> {bmiImage.setImageResource(R.drawable.overweight)
+                        bmiInfoT.text ="You are Overweight"+
+                                "\n" +"Obesity is considered the leading preventable disease worldwide. This can be achieved mainly by lifestyle modification that includes diet plans for weight loss and physical activity. Behavioral therapy, drug therapy, and surgery also aid in reducing the illness.\n" +
+                                "\n" +
+                                "The treatment can include\n" +
+                                "\n" +
+                                "1. Weight loss diet control and management\n" +
+                                "2. Behavioral therapy (through stress management, counseling people for psychological eating disorders, anti-depression therapies)\n" +
+                                "3. Drug management (consisting of medication for specific hormonal imbalances and other co-morbidities)\n" +
+                                "4. Surgery (Bariatric surgery and procedures like gastric sleeve and Roux--En-Y gastric bypass surgery)"
+                    }
+                    bmi>18.5-> { bmiImage.setImageResource(R.drawable.normal)
+                        bmiInfoT.text =" You are healthy.. continue your diet and exercises to stay healthy"
+                    }
+                    else-> {bmiImage.setImageResource(R.drawable.underweight)
+                        bmiInfoT.text =" You are underweight.. we recommend a diet-change with protein and carbohydrates"
+                    }
                 }
             }
         }

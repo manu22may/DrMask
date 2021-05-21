@@ -29,7 +29,7 @@ class FireBasePlotActivity : AppCompatActivity() {
     lateinit var humidityDataValues : MutableList<String>
     lateinit var bpmDataValues : MutableList<String>
     lateinit var spo2DataValues : MutableList<String>
-    var SAMPLE_SIZE = 50
+    var SAMPLE_SIZE = 15
     lateinit var bpmChart : LineChart
     lateinit var spo2Chart : LineChart
     lateinit var humChart : LineChart
@@ -124,7 +124,8 @@ class FireBasePlotActivity : AppCompatActivity() {
                         var sumHum=0.0
                         for (x in humidityDataValues)
                             sumHum+=x.toDouble()
-                        sumHum/=SAMPLE_SIZE
+                        sumHum /= SAMPLE_SIZE
+                        Toast.makeText(this@FireBasePlotActivity,"$sumHum , $normalHum",Toast.LENGTH_SHORT).show()
                         if(sumHum<normalHum){
                             sendNotification("$sumHum Breathing Abnormality",2)
                         }
@@ -135,6 +136,7 @@ class FireBasePlotActivity : AppCompatActivity() {
                             if (x.toDouble() < minHum) minHum = x.toDouble()
                         }
                         normalHum = minHum + (maxHum-minHum)/4
+                        Toast.makeText(this@FireBasePlotActivity,"($maxHum,$minHum)\n$normalHum is the normal humidity calibrated",Toast.LENGTH_SHORT).show()
                     }
                 }
             }

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:backgroundTint="@color/white"
+    android:background="@color/cardview_light_background"
     tools:context=".BmiFragment">
 
     <androidx.constraintlayout.widget.Guideline
@@ -112,20 +111,37 @@
             <ImageView
                 android:id="@+id/bmiImage"
                 android:layout_width="wrap_content"
-                android:layout_height="250dp"
-                android:scaleType="fitCenter"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
                 tools:src="@tools:sample/avatars" />
 
-            <TextView
-                android:id="@+id/bmiAnsT"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="BMI ="
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="36sp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/bmiAnsT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="BMI ="
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/bmiInfoT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="2dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="2dp"
+                    android:textAlignment="textStart"
+                    android:textColor="#BF000000" />
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

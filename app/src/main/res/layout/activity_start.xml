@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dr_mask_bg"
+    android:background="@drawable/login_bg"
     android:backgroundTint="#66000000"
     android:backgroundTintMode="src_atop"
     tools:context=".ActivityStart">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/startHeadingT"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/gradient_background_blue"
@@ -48,7 +48,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5">
+        app:layout_constraintTop_toBottomOf="@+id/startHeadingT">
 
     </FrameLayout>
 
